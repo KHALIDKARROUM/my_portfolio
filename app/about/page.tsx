@@ -17,7 +17,7 @@ export default function AboutPage() {
   return (
     <main>
       <section className="about-hero shell">
-        <div>
+        <div data-reveal="left">
           <p className="eyebrow">About / professional approach</p>
           <h1>Modeling the problem is only half the work.</h1>
           <p>I’m interested in machine-learning systems where statistical judgment and engineering discipline reinforce each other. That means treating evaluation, interfaces, operational controls, and limitations as part of the same design.</p>
@@ -27,18 +27,18 @@ export default function AboutPage() {
       </section>
 
       <section className="about-principles shell" aria-label="Working principles">
-        <article><span>01</span><h2>Start with the decision.</h2><p>Define who uses the output, what action it informs, and what an error costs before optimizing a score.</p></article>
-        <article><span>02</span><h2>Protect the evaluation.</h2><p>Keep preprocessing, calibration, threshold selection, and holdout testing separated and reproducible.</p></article>
-        <article><span>03</span><h2>Engineer the seams.</h2><p>Data contracts, APIs, persistence, access control, monitoring, and tests determine whether a model can be trusted in context.</p></article>
+        <article data-reveal="up"><span>01</span><h2>Start with the decision.</h2><p>Define who uses the output, what action it informs, and what an error costs before optimizing a score.</p></article>
+        <article data-reveal="up" data-reveal-delay="90"><span>02</span><h2>Protect the evaluation.</h2><p>Keep preprocessing, calibration, threshold selection, and holdout testing separated and reproducible.</p></article>
+        <article data-reveal="up" data-reveal-delay="180"><span>03</span><h2>Engineer the seams.</h2><p>Data contracts, APIs, persistence, access control, monitoring, and tests determine whether a model can be trusted in context.</p></article>
       </section>
 
       <section className="about-education shell">
         <SectionHeading eyebrow="Foundation / 01" title="Education & technical direction." />
         <div className="about-education-grid">
-          <div>
+          <div data-reveal="left">
             {education.map((item) => <article key={item.field}><span>Current</span><h3>{item.degree}</h3><p>{item.field}</p><small>{item.location}</small></article>)}
           </div>
-          <div><span className="detail-label">Current depth</span><ul>{technicalInterests.map((item) => <li key={item}>{item}</li>)}</ul></div>
+          <div data-reveal="right" data-reveal-delay="90"><span className="detail-label">Current depth</span><ul>{technicalInterests.map((item) => <li key={item}>{item}</li>)}</ul></div>
         </div>
       </section>
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
         <SkillsGrid />
       </section>
 
-      <section className="about-project-link shell">
+      <section className="about-project-link shell" data-reveal="up">
         <p>See how those principles show up in the work.</p>
         <Link href="/projects">Explore project case studies <ArrowRight aria-hidden="true" /></Link>
       </section>

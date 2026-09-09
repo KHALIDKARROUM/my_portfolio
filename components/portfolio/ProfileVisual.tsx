@@ -3,7 +3,7 @@ import { profile } from '@/data/profile';
 
 export function ProfileVisual() {
   return (
-    <div className="profile-visual">
+    <div className="profile-visual" data-reveal="right" data-reveal-delay="120">
       {profile.profileImage ? (
         <Image
           src={profile.profileImage}

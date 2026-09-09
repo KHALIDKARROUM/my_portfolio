@@ -7,14 +7,14 @@ type ArchitectureFlowProps = {
 
 export function ArchitectureFlow({ steps, label = 'System architecture' }: ArchitectureFlowProps) {
   return (
-    <div className="architecture-panel">
+    <div className="architecture-panel" data-reveal="scale">
       <div className="architecture-label">
         <span>FLOW / SYSTEM</span>
         <span>{label}</span>
       </div>
       <div className="architecture-flow" aria-label={label}>
         {steps.map((step, index) => (
-          <div className="architecture-node-wrap" key={step}>
+          <div className="architecture-node-wrap" key={step} data-node-index={index}>
             <div className="architecture-node">
               <span>{String(index + 1).padStart(2, '0')}</span>
               <strong>{step}</strong>

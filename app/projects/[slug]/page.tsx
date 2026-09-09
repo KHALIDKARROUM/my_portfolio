@@ -35,7 +35,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="case-page" data-accent={project.accent}>
-      <section className="case-hero shell">
+      <section className="case-hero shell" data-reveal="up">
         <Link href="/projects" className="back-link"><ArrowLeft aria-hidden="true" /> Project index</Link>
         <p className="eyebrow">Case study / {String(currentIndex + 1).padStart(2, '0')}</p>
         <h1>{project.title}</h1>
@@ -48,13 +48,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </section>
 
       <section className="case-summary shell" aria-label="Project summary">
-        <div><span>Problem</span><p>{project.problem}</p></div>
-        <div><span>Outcome</span><p>{project.outcome}</p></div>
+        <div data-reveal="left"><span>Problem</span><p>{project.problem}</p></div>
+        <div data-reveal="right" data-reveal-delay="90"><span>Outcome</span><p>{project.outcome}</p></div>
       </section>
 
       {project.metrics && (
         <section className="metrics-grid shell" aria-label="Verified project metrics">
-          {project.metrics.map((metric) => <article key={metric.label}><span>{metric.label}</span><strong>{metric.value}</strong><p>{metric.context}</p></article>)}
+          {project.metrics.map((metric, index) => <article key={metric.label} data-reveal="up" data-reveal-delay={index * 80}><span>{metric.label}</span><strong>{metric.value}</strong><p>{metric.context}</p></article>)}
         </section>
       )}
 
@@ -70,14 +70,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </aside>
         <div className="case-sections">
           {project.sections.map((section, index) => (
-            <article id={`section-${index + 1}`} key={section.title}>
+            <article id={`section-${index + 1}`} key={section.title} data-reveal="up">
               <div className="section-index">{String(index + 1).padStart(2, '0')}</div>
               <h2>{section.title}</h2>
               <p>{section.summary}</p>
               {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
             </article>
           ))}
-          <article id="lessons" className="lessons-section">
+          <article id="lessons" className="lessons-section" data-reveal="up">
             <div className="section-index">{String(project.sections.length + 1).padStart(2, '0')}</div>
             <h2>Lessons & next steps</h2>
             <div className="lessons-grid">
@@ -88,9 +88,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
-      <section className="case-stack shell"><span>Technology stack</span><div>{project.tech.map((item) => <span key={item}>{item}</span>)}</div></section>
+      <section className="case-stack shell" data-reveal="up"><span>Technology stack</span><div>{project.tech.map((item) => <span key={item}>{item}</span>)}</div></section>
 
-      <Link href={`/projects/${nextProject.slug}`} className="next-project shell"><span>Next case study</span><strong>{nextProject.title}</strong><ArrowRight aria-hidden="true" /></Link>
+      <Link href={`/projects/${nextProject.slug}`} className="next-project shell" data-reveal="scale"><span>Next case study</span><strong>{nextProject.title}</strong><ArrowRight aria-hidden="true" /></Link>
       <ContactCTA />
     </main>
   );

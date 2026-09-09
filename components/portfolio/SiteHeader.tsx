@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CodeXml, Menu } from 'lucide-react';
 import { profile } from '@/data/profile';
+import { BrandMark } from './BrandMark';
 import { ResumeLink } from './ResumeLink';
 
 const navigation = [
@@ -15,7 +16,7 @@ export function SiteHeader() {
     <header className="site-nav">
       <div className="shell nav-inner">
         <Link href="/" className="wordmark" aria-label={`${profile.name} home`}>
-          <span>{profile.initials}</span>
+          <BrandMark />
           <span>{profile.name}</span>
         </Link>
 

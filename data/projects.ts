@@ -21,7 +21,7 @@ export const projects: Project[] = [
       {
         label: 'Final test ROC-AUC',
         value: '0.881',
-        context: 'Calibrated Gradient Boosting on the untouched final test set.',
+        context: 'Historical 2.1.0 demonstration; not validation of the corrected 2.2.0 model.',
       },
       {
         label: 'Screening threshold recall',
@@ -238,6 +238,39 @@ export const projects: Project[] = [
       'Add time-based validation once data with a prediction horizon is available.',
       'Evaluate calibration and performance across relevant customer subgroups.',
     ],
+  },
+  {
+    slug: 'diabetes-prediction',
+    title: 'Diabetes Prediction',
+    eyebrow: 'Data Science · Classification',
+    oneLine: 'Exploring health data through a complete classification workflow.',
+    summary: 'A notebook project connecting exploratory analysis, missing-value handling, feature scaling, and classifier comparison using diagnostic measurements.',
+    problem: 'Health measurements need careful exploration and preprocessing before classification. This learning project examines how data preparation and model choice affect predictions.',
+    outcome: 'A documented notebook comparing logistic regression and a decision tree, with visualizations, cross-validation, confusion matrices, and ROC analysis. For learning and experimentation only, not clinical use.',
+    repository: 'https://github.com/KHALIDKARROUM/Diabetes-Prediction-',
+    featured: true,
+    accent: 'violet',
+    tags: ['Data Science', 'EDA', 'Classification', 'Visualization'],
+    tech: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Seaborn', 'Matplotlib', 'Jupyter'],
+    architecture: ['Health measurements', 'EDA', 'Missing values', 'Feature scaling', 'Classification', 'Evaluation'],
+    sections: [
+      {
+        title: 'Explore & prepare',
+        summary: 'Explore individual variables and relationships, identify invalid zero measurements, and compare scaling approaches.',
+        bullets: ['Univariate, bivariate, and multivariate visualizations', 'Missing-value handling for invalid zeros', 'Min-Max scaling and standardization examples'],
+      },
+      {
+        title: 'Train & evaluate',
+        summary: 'Compare logistic regression and decision tree classifiers using a train/test split and multiple evaluation views.',
+        bullets: ['Accuracy and cross-validation', 'Confusion matrix and ROC-AUC', 'Feature importance plots'],
+      },
+      {
+        title: 'Scope & limitations',
+        summary: 'This is an educational notebook, not a medical tool. Reported results depend on the dataset, execution order, and environment. The repository documents further work on reproducibility and preprocessing pipelines.',
+      },
+    ],
+    lessons: ['Explore suspicious values before fitting a model.', 'Use several evaluation views to understand classification behavior.', 'Keep experimental results tied to their dataset and limitations.'],
+    futureImprovements: ['Package preprocessing in a fitted scikit-learn pipeline.', 'Pin dependencies for reproducible notebook execution.', 'Extend model comparison and hyperparameter tuning.'],
   },
   {
     slug: 'puddle-marketplace',

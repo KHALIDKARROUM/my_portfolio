@@ -15,9 +15,19 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: 'Data & Statistics',
+    title: 'Data Analysis',
     description: 'From exploratory analysis to reproducible, deployment-aligned pipelines.',
-    items: ['Python', 'SQL', 'pandas', 'NumPy', 'PostgreSQL', 'MySQL', 'Matplotlib', 'Plotly'],
+    items: ['Python', 'pandas', 'NumPy', 'Jupyter', 'Exploratory data analysis', 'Data cleaning', 'Missing-value handling', 'Feature scaling'],
+  },
+  {
+    title: 'Visualization & Evaluation',
+    description: 'Make patterns visible and understand where a model succeeds or fails.',
+    items: ['Matplotlib', 'Seaborn', 'Plotly', 'Cross-validation', 'ROC-AUC', 'Precision & recall', 'Confusion matrices', 'Feature importance'],
+  },
+  {
+    title: 'Data & Databases',
+    description: 'Query, organize, and persist the data behind analytical applications.',
+    items: ['SQL', 'PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'ETL/ELT', 'Data warehousing'],
   },
   {
     title: 'Backend & Products',

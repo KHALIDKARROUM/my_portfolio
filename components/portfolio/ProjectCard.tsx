@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, CodeXml } from 'lucide-react';
 import type { Project } from '@/types/portfolio';
+import { ProjectVisual } from './DataVisual';
 
 type ProjectCardProps = {
   project: Project;
@@ -10,11 +11,17 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, index, large = false }: ProjectCardProps) {
   return (
-    <article className={large ? 'project-card project-card-large' : 'project-card'} data-accent={project.accent}>
+    <article
+      className={large ? 'project-card project-card-large' : 'project-card'}
+      data-accent={project.accent}
+      data-reveal="up"
+      data-reveal-delay={Math.min(index, 3) * 90}
+    >
       <div className="project-card-head">
         <span>{String(index + 1).padStart(2, '0')}</span>
         <span>{project.eyebrow}</span>
       </div>
+      <ProjectVisual slug={project.slug} />
       <div className="project-card-body">
         <h3>{project.title}</h3>
         <p className="project-card-outcome">{project.oneLine}</p>
@@ -24,6 +31,7 @@ export function ProjectCard({ project, index, large = false }: ProjectCardProps)
         <div className="card-metric">
           <strong>{project.metrics[0].value}</strong>
           <span>{project.metrics[0].label}</span>
+          <small>{project.metrics[0].context}</small>
         </div>
       )}
       <div className="card-tech" aria-label="Technology stack">

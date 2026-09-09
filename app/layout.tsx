@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Footer } from '@/components/portfolio/Footer';
+import { MotionController } from '@/components/portfolio/MotionController';
 import { SiteHeader } from '@/components/portfolio/SiteHeader';
 import { profile } from '@/data/profile';
 import './globals.css';
@@ -63,6 +64,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
+        <MotionController />
         <SiteHeader />
         <div id="main-content">
         {children}
