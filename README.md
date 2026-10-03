@@ -82,7 +82,7 @@ Add a new object to `projects` in `data/projects.ts`. The `/projects/[slug]` rou
 1. Add the real PDF at `public/Khalid-Karroum-CV.pdf`.
 2. Set `resume.available` to `true` in `data/profile.ts`.
 
-Until both steps are complete, the interface uses an honest “Request CV” action instead of linking to a missing or fake document.
+Until both steps are complete, CV links stay hidden instead of pointing to a missing file.
 
 ### Add a profile photo
 

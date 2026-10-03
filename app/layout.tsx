@@ -4,6 +4,7 @@ import { MotionController } from '@/components/portfolio/MotionController';
 import { SiteHeader } from '@/components/portfolio/SiteHeader';
 import { profile } from '@/data/profile';
 import './globals.css';
+import './redesign.css';
 
 const siteUrl = new URL(profile.siteUrl ?? 'http://localhost:3000');
 

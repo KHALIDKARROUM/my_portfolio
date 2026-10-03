@@ -16,7 +16,7 @@ export function ProfileVisual() {
       ) : (
         <>
           <span className="profile-initials" aria-hidden="true">{profile.initials}</span>
-          <span className="profile-placeholder">Portrait optional · work stays primary</span>
+          <span className="profile-placeholder">Data / Models / Systems</span>
         </>
       )}
     </div>

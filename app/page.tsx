@@ -3,7 +3,6 @@ import { ArrowRight, CodeXml, MapPin, ShieldCheck } from 'lucide-react';
 import { ArchitectureFlow } from '@/components/portfolio/ArchitectureFlow';
 import { ContactCTA } from '@/components/portfolio/ContactCTA';
 import { ProjectCard } from '@/components/portfolio/ProjectCard';
-import { ResumeLink } from '@/components/portfolio/ResumeLink';
 import { SectionHeading } from '@/components/portfolio/SectionHeading';
 import { DataVisual } from '@/components/portfolio/DataVisual';
 import { SkillsGrid } from '@/components/portfolio/SkillsGrid';
@@ -26,17 +25,20 @@ export default function Home() {
     <main>
       <section className="hero shell" aria-labelledby="hero-title">
         <div className="hero-copy" data-reveal="left">
-          <div className="status-pill"><span aria-hidden="true" />{profile.availability}</div>
-          <p className="eyebrow">Hi, I’m Khalid Karroum</p>
-          <h1 id="hero-title">Turning data<br />into <em>what’s next.</em></h1>
+          <div className="hero-meta">
+            <span className="hero-path" aria-hidden="true">~/khalid/portfolio <b>›</b></span>
+            <span className="status-pill"><span aria-hidden="true" />{profile.availability}</span>
+          </div>
+          <p className="eyebrow">Hello, I’m Khalid Karroum <span aria-hidden="true">{'//'}</span> based in Morocco</p>
+          <h1 id="hero-title">Machine learning<br />that <em>leaves the notebook.</em></h1>
           <p className="hero-role">Data Scientist <span>/</span> Machine Learning Engineer</p>
           <p className="hero-lede">
-            I explore patterns, build predictive models, and turn them into useful software.
-            My playground: financial risk, cybersecurity, and applied machine learning.
+            I turn data into models, APIs, and decision workflows people can actually use.
+            Currently exploring financial risk, cybersecurity, and applied AI.
           </p>
           <div className="hero-actions">
             <Link href="#projects" className="button button-primary">View selected work <ArrowRight aria-hidden="true" /></Link>
-            <ResumeLink className="button button-secondary" />
+            <Link href="/about" className="button button-secondary">How I work <ArrowRight aria-hidden="true" /></Link>
             <a href={profile.github} className="icon-link" aria-label="GitHub profile"><CodeXml aria-hidden="true" /></a>
           </div>
         </div>
@@ -51,7 +53,7 @@ export default function Home() {
       </section>
 
       <section id="projects" className="project-section shell" aria-labelledby="projects-title">
-        <SectionHeading eyebrow="Selected work / 01" title="Less theory. More building." id="projects-title" description="A selection from my GitHub: credit risk, network anomalies, customer behavior, and health data. Explore the thinking and the code behind each project." />
+        <SectionHeading eyebrow="Selected work / 01" title="Built, tested, shipped." id="projects-title" description="Credit risk, network anomalies, customer behavior, and health data. Each project opens into the decisions, implementation, and limits behind the work." />
         <div className="featured-project-grid">
           {featuredProjects.map((project, index) => <ProjectCard key={project.slug} project={project} index={index} />)}
         </div>
@@ -71,7 +73,7 @@ export default function Home() {
       </section>
 
       <section id="skills" className="capabilities-section shell" aria-labelledby="skills-title">
-        <SectionHeading eyebrow="Technical capabilities / 02" title="The toolkit behind the work." id="skills-title" description="From exploring a dataset to delivering a model: the methods, libraries, and engineering skills I use across my projects." />
+        <SectionHeading eyebrow="Technical capabilities / 02" title="Tools of the trade." id="skills-title" description="The methods and technologies I use to move from an exploratory dataset to a working system." />
         <SkillsGrid />
       </section>
 

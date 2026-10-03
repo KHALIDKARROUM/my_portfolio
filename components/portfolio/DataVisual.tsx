@@ -9,8 +9,9 @@ const dots = Array.from({ length: 68 }, (_, i) => ({
 export function DataVisual() {
   return (
     <div className="data-lab" data-reveal="right" data-reveal-delay="100">
-      <div className="lab-topline"><span><Network size={16} aria-hidden="true" /> THE APPLIED ML LAB</span><span className="lab-dot" aria-hidden="true" /></div>
-      <div className="lab-heading"><span>Finding the signal.</span><strong>Making it useful.</strong></div>
+      <div className="lab-windowbar"><span className="lab-window-controls" aria-hidden="true"><i /><i /><i /></span><span>signal_lab / feature_space.ipynb</span><span>01 / 03</span></div>
+      <div className="lab-topline"><span><Network size={16} aria-hidden="true" /> THE APPLIED ML LAB</span><span className="lab-live"><span className="lab-dot" aria-hidden="true" /> EXPLORING</span></div>
+      <div className="lab-heading"><span>Find the signal.</span><strong>Build the system.</strong></div>
       <div className="lab-chart">
         <div className="chart-caption"><span>Feature space</span><span>Conceptual view</span></div>
         <svg viewBox="0 0 440 255" aria-labelledby="feature-space-title">
@@ -23,7 +24,7 @@ export function DataVisual() {
         </svg>
         <div className="chart-legend"><span>Explore</span><span>Model</span><span>Understand</span></div>
       </div>
-      <div className="lab-pipeline"><Braces size={19} aria-hidden="true" /><span>Raw data <b>→</b> Reliable decisions</span><ArrowUpRight size={18} aria-hidden="true" /></div>
+      <div className="lab-pipeline"><Braces size={19} aria-hidden="true" /><span><code>input</code> raw data <b>→</b> <code>output</code> useful decisions</span><ArrowUpRight size={18} aria-hidden="true" /></div>
       <div className="lab-note"><Check size={14} aria-hidden="true" /> Python · Machine learning · Applications</div>
     </div>
   );
