@@ -5,7 +5,8 @@ export const projects: Project[] = [
     slug: 'aegis-credit',
     title: 'Aegis-Credit',
     eyebrow: 'Financial ML · Model Governance',
-    oneLine: 'End-to-end credit-risk screening and model-governance platform.',
+    oneLine:
+      'Credit-risk modeling with application scoring, human review, and monitoring.',
     summary:
       'A calibrated model connected to risk bands, durable assessment cases, human review, batch scoring, monitoring, threshold economics, and an authenticated API.',
     problem:
@@ -16,22 +17,32 @@ export const projects: Project[] = [
     featured: true,
     accent: 'lime',
     tags: ['Finance', 'Machine Learning', 'MLOps', 'Backend'],
-    tech: ['Python', 'Django', 'scikit-learn', 'PostgreSQL', 'Docker', 'GitHub Actions'],
+    tech: [
+      'Python',
+      'Django',
+      'scikit-learn',
+      'PostgreSQL',
+      'Docker',
+      'GitHub Actions',
+    ],
     metrics: [
       {
         label: 'Final test ROC-AUC',
         value: '0.881',
-        context: 'Historical 2.1.0 demonstration; not validation of the corrected 2.2.0 model.',
+        context:
+          'Historical 2.1.0 demonstration; not validation of the corrected 2.2.0 model.',
       },
       {
         label: 'Screening threshold recall',
         value: '0.755',
-        context: 'Historical 2.1.0 evaluation at threshold 0.21; not production-release evidence.',
+        context:
+          'Historical 2.1.0 evaluation at threshold 0.21; not production-release evidence.',
       },
       {
         label: 'Final test rows',
         value: '6,484',
-        context: 'Held apart from training, model selection, calibration, and threshold selection.',
+        context:
+          'Held apart from training, model selection, calibration, and threshold selection.',
       },
     ],
     architecture: [
@@ -110,7 +121,8 @@ export const projects: Project[] = [
     slug: 'netguard',
     title: 'NetGuard',
     eyebrow: 'Cybersecurity · Anomaly Detection',
-    oneLine: 'Network anomaly detection as an inspectable operations workflow.',
+    oneLine:
+      'Network anomaly detection using Isolation Forest, LOF, and an autoencoder.',
     summary:
       'An UNSW-NB15 exploration and scoring application comparing unsupervised detectors, serving an ensemble through FastAPI, and presenting results in a Streamlit operations dashboard.',
     problem:
@@ -121,7 +133,15 @@ export const projects: Project[] = [
     featured: true,
     accent: 'blue',
     tags: ['Security', 'Anomaly Detection', 'Deep Learning', 'API'],
-    tech: ['Python', 'FastAPI', 'PyTorch', 'scikit-learn', 'Streamlit', 'Plotly', 'Docker Compose'],
+    tech: [
+      'Python',
+      'FastAPI',
+      'PyTorch',
+      'scikit-learn',
+      'Streamlit',
+      'Plotly',
+      'Docker Compose',
+    ],
     architecture: [
       'UNSW-NB15 traffic',
       'Preprocessing',
@@ -188,7 +208,8 @@ export const projects: Project[] = [
     slug: 'telco-churn',
     title: 'Telco Churn',
     eyebrow: 'Applied ML · Reproducibility',
-    oneLine: 'Calibrated churn modeling shared by two production-style interfaces.',
+    oneLine:
+      'Customer churn prediction with a shared model for Django and Streamlit.',
     summary:
       'A reproducible training pipeline that compares models with training-only cross-validation, calibrates the selected estimator, chooses a threshold from out-of-fold scores, and serves one artifact to Django and Streamlit.',
     problem:
@@ -200,7 +221,15 @@ export const projects: Project[] = [
     accent: 'amber',
     tags: ['Machine Learning', 'Product Analytics', 'Calibration', 'CI'],
     tech: ['Python', 'Django', 'Streamlit', 'scikit-learn', 'GitHub Actions'],
-    architecture: ['Telco data', 'Cleaning', 'Cross-validation', 'Calibration', 'Threshold', 'Shared artifact', 'Two interfaces'],
+    architecture: [
+      'Telco data',
+      'Cleaning',
+      'Cross-validation',
+      'Calibration',
+      'Threshold',
+      'Shared artifact',
+      'Two interfaces',
+    ],
     sections: [
       {
         title: 'Modeling workflow',
@@ -243,40 +272,79 @@ export const projects: Project[] = [
     slug: 'diabetes-prediction',
     title: 'Diabetes Prediction',
     eyebrow: 'Data Science · Classification',
-    oneLine: 'Exploring health data through a complete classification workflow.',
-    summary: 'A notebook project connecting exploratory analysis, missing-value handling, feature scaling, and classifier comparison using diagnostic measurements.',
-    problem: 'Health measurements need careful exploration and preprocessing before classification. This learning project examines how data preparation and model choice affect predictions.',
-    outcome: 'A documented notebook comparing logistic regression and a decision tree, with visualizations, cross-validation, confusion matrices, and ROC analysis. For learning and experimentation only, not clinical use.',
+    oneLine:
+      'An educational notebook comparing classifiers on health measurements.',
+    summary:
+      'A notebook project connecting exploratory analysis, missing-value handling, feature scaling, and classifier comparison using diagnostic measurements.',
+    problem:
+      'Health measurements need careful exploration and preprocessing before classification. This learning project examines how data preparation and model choice affect predictions.',
+    outcome:
+      'A documented notebook comparing logistic regression and a decision tree, with visualizations, cross-validation, confusion matrices, and ROC analysis. For learning and experimentation only, not clinical use.',
     repository: 'https://github.com/KHALIDKARROUM/Diabetes-Prediction-',
     featured: true,
     accent: 'violet',
     tags: ['Data Science', 'EDA', 'Classification', 'Visualization'],
-    tech: ['Python', 'pandas', 'NumPy', 'scikit-learn', 'Seaborn', 'Matplotlib', 'Jupyter'],
-    architecture: ['Health measurements', 'EDA', 'Missing values', 'Feature scaling', 'Classification', 'Evaluation'],
+    tech: [
+      'Python',
+      'pandas',
+      'NumPy',
+      'scikit-learn',
+      'Seaborn',
+      'Matplotlib',
+      'Jupyter',
+    ],
+    architecture: [
+      'Health measurements',
+      'EDA',
+      'Missing values',
+      'Feature scaling',
+      'Classification',
+      'Evaluation',
+    ],
     sections: [
       {
         title: 'Explore & prepare',
-        summary: 'Explore individual variables and relationships, identify invalid zero measurements, and compare scaling approaches.',
-        bullets: ['Univariate, bivariate, and multivariate visualizations', 'Missing-value handling for invalid zeros', 'Min-Max scaling and standardization examples'],
+        summary:
+          'Explore individual variables and relationships, identify invalid zero measurements, and compare scaling approaches.',
+        bullets: [
+          'Univariate, bivariate, and multivariate visualizations',
+          'Missing-value handling for invalid zeros',
+          'Min-Max scaling and standardization examples',
+        ],
       },
       {
         title: 'Train & evaluate',
-        summary: 'Compare logistic regression and decision tree classifiers using a train/test split and multiple evaluation views.',
-        bullets: ['Accuracy and cross-validation', 'Confusion matrix and ROC-AUC', 'Feature importance plots'],
+        summary:
+          'Compare logistic regression and decision tree classifiers using a train/test split and multiple evaluation views.',
+        bullets: [
+          'Accuracy and cross-validation',
+          'Confusion matrix and ROC-AUC',
+          'Feature importance plots',
+        ],
       },
       {
         title: 'Scope & limitations',
-        summary: 'This is an educational notebook, not a medical tool. Reported results depend on the dataset, execution order, and environment. The repository documents further work on reproducibility and preprocessing pipelines.',
+        summary:
+          'This is an educational notebook, not a medical tool. Reported results depend on the dataset, execution order, and environment. The repository documents further work on reproducibility and preprocessing pipelines.',
       },
     ],
-    lessons: ['Explore suspicious values before fitting a model.', 'Use several evaluation views to understand classification behavior.', 'Keep experimental results tied to their dataset and limitations.'],
-    futureImprovements: ['Package preprocessing in a fitted scikit-learn pipeline.', 'Pin dependencies for reproducible notebook execution.', 'Extend model comparison and hyperparameter tuning.'],
+    lessons: [
+      'Explore suspicious values before fitting a model.',
+      'Use several evaluation views to understand classification behavior.',
+      'Keep experimental results tied to their dataset and limitations.',
+    ],
+    futureImprovements: [
+      'Package preprocessing in a fitted scikit-learn pipeline.',
+      'Pin dependencies for reproducible notebook execution.',
+      'Extend model comparison and hyperparameter tuning.',
+    ],
   },
   {
     slug: 'puddle-marketplace',
     title: 'Puddle Marketplace',
     eyebrow: 'Software Engineering · Django',
-    oneLine: 'A multi-user marketplace with guarded ownership and conversation flows.',
+    oneLine:
+      'A Django marketplace with listings, user accounts, and private messaging.',
     summary:
       'A Django marketplace for searchable second-hand listings, authenticated item management, validated image uploads, and private buyer–seller conversations.',
     problem:
@@ -288,7 +356,14 @@ export const projects: Project[] = [
     accent: 'violet',
     tags: ['Backend', 'Django', 'Authentication', 'Testing'],
     tech: ['Python', 'Django', 'SQLite', 'Pillow', 'HTML/CSS'],
-    architecture: ['Visitor', 'Catalogue', 'Authentication', 'Listings', 'Conversations', 'Seller dashboard'],
+    architecture: [
+      'Visitor',
+      'Catalogue',
+      'Authentication',
+      'Listings',
+      'Conversations',
+      'Seller dashboard',
+    ],
     sections: [
       {
         title: 'Product surface',

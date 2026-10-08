@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, CodeXml } from 'lucide-react';
-import { ArchitectureFlow } from '@/components/portfolio/ArchitectureFlow';
-import { ContactCTA } from '@/components/portfolio/ContactCTA';
 import { getProject, projects } from '@/data/projects';
 
 type ProjectPageProps = { params: Promise<{ slug: string }> };
@@ -12,15 +9,21 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
 
   return {
-    title: `${project.title} Case Study`,
+    title: project.title,
     description: project.oneLine,
-    openGraph: { title: project.title, description: project.oneLine, images: [] },
+    openGraph: {
+      title: project.title,
+      description: project.oneLine,
+      images: [],
+    },
     twitter: { title: project.title, description: project.oneLine, images: [] },
   };
 }
@@ -30,68 +33,100 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const project = getProject(slug);
   if (!project) notFound();
 
-  const currentIndex = projects.findIndex((item) => item.slug === project.slug);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
-
   return (
-    <main className="case-page" data-accent={project.accent}>
-      <section className="case-hero shell" data-reveal="up">
-        <Link href="/projects" className="back-link"><ArrowLeft aria-hidden="true" /> Project index</Link>
-        <p className="eyebrow">Case study / {String(currentIndex + 1).padStart(2, '0')}</p>
-        <h1>{project.title}</h1>
-        <p className="case-outcome">{project.oneLine}</p>
-        <div className="case-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-        <div className="case-hero-actions">
-          <a href={project.repository} className="button button-primary">View source <CodeXml aria-hidden="true" /></a>
-          <span>Repository-verified case study</span>
-        </div>
+    <main id="main-content" tabIndex={-1}>
+      <section aria-labelledby="project-title">
+        <p>
+          <Link href="/projects">All projects</Link>
+        </p>
+        <h1 id="project-title">{project.title}</h1>
+        <p>{project.summary}</p>
+        <p>
+          <strong>Technologies:</strong> {project.tech.join(', ')}
+        </p>
+        <p>
+          <a href={project.repository}>Source code on GitHub</a>
+        </p>
       </section>
 
-      <section className="case-summary shell" aria-label="Project summary">
-        <div data-reveal="left"><span>Problem</span><p>{project.problem}</p></div>
-        <div data-reveal="right" data-reveal-delay="90"><span>Outcome</span><p>{project.outcome}</p></div>
+      <section aria-labelledby="problem-title">
+        <h2 id="problem-title">Problem</h2>
+        <p>{project.problem}</p>
       </section>
 
-      {project.metrics && (
-        <section className="metrics-grid shell" aria-label="Verified project metrics">
-          {project.metrics.map((metric, index) => <article key={metric.label} data-reveal="up" data-reveal-delay={index * 80}><span>{metric.label}</span><strong>{metric.value}</strong><p>{metric.context}</p></article>)}
+      <section aria-labelledby="outcome-title">
+        <h2 id="outcome-title">Result</h2>
+        <p>{project.outcome}</p>
+      </section>
+
+      {project.metrics && project.metrics.length > 0 && (
+        <section aria-labelledby="evaluation-title">
+          <h2 id="evaluation-title">Evaluation</h2>
+          <dl>
+            {project.metrics.map((metric) => (
+              <div key={metric.label}>
+                <dt>
+                  {metric.label}: {metric.value}
+                </dt>
+                <dd>{metric.context}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
       )}
 
-      {project.architecture && <section className="case-architecture shell"><ArchitectureFlow steps={project.architecture} label={`${project.title} architecture`} /></section>}
+      {project.architecture && project.architecture.length > 0 && (
+        <section aria-labelledby="workflow-title">
+          <h2 id="workflow-title">Workflow</h2>
+          <ol>
+            {project.architecture.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+        </section>
+      )}
 
-      <section className="case-body shell">
-        <aside>
-          <span>Case study map</span>
-          <nav aria-label="Case study sections">
-            {project.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.title}>{section.title}</a>)}
-            <a href="#lessons">Lessons & next steps</a>
-          </nav>
-        </aside>
-        <div className="case-sections">
-          {project.sections.map((section, index) => (
-            <article id={`section-${index + 1}`} key={section.title} data-reveal="up">
-              <div className="section-index">{String(index + 1).padStart(2, '0')}</div>
-              <h2>{section.title}</h2>
-              <p>{section.summary}</p>
-              {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
-            </article>
-          ))}
-          <article id="lessons" className="lessons-section" data-reveal="up">
-            <div className="section-index">{String(project.sections.length + 1).padStart(2, '0')}</div>
-            <h2>Lessons & next steps</h2>
-            <div className="lessons-grid">
-              <div><h3>What I learned</h3><ul>{project.lessons.map((lesson) => <li key={lesson}>{lesson}</li>)}</ul></div>
-              <div><h3>Future improvements</h3><ul>{project.futureImprovements.map((item) => <li key={item}>{item}</li>)}</ul></div>
-            </div>
-          </article>
-        </div>
+      <section className="case-sections" aria-label="Project details">
+        {project.sections.map((section, index) => (
+          <section
+            id={`section-${index + 1}`}
+            key={section.title}
+            aria-labelledby={`detail-${index + 1}`}
+          >
+            <h2 id={`detail-${index + 1}`}>{section.title}</h2>
+            <p>{section.summary}</p>
+            {section.bullets && (
+              <ul>
+                {section.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
       </section>
 
-      <section className="case-stack shell" data-reveal="up"><span>Technology stack</span><div>{project.tech.map((item) => <span key={item}>{item}</span>)}</div></section>
+      <section id="lessons" aria-labelledby="lessons-title">
+        <h2 id="lessons-title">What I learned</h2>
+        <ul>
+          {project.lessons.map((lesson) => (
+            <li key={lesson}>{lesson}</li>
+          ))}
+        </ul>
+      </section>
 
-      <Link href={`/projects/${nextProject.slug}`} className="next-project shell" data-reveal="scale"><span>Next case study</span><strong>{nextProject.title}</strong><ArrowRight aria-hidden="true" /></Link>
-      <ContactCTA />
+      <section aria-labelledby="next-steps-title">
+        <h2 id="next-steps-title">Next steps</h2>
+        <ul>
+          {project.futureImprovements.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-label="Project navigation">
+        <Link href="/projects">Back to all projects</Link>
+      </section>
     </main>
   );
 }

@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { Footer } from '@/components/portfolio/Footer';
-import { MotionController } from '@/components/portfolio/MotionController';
 import { SiteHeader } from '@/components/portfolio/SiteHeader';
 import { profile } from '@/data/profile';
 import './globals.css';
-import './redesign.css';
 
 const siteUrl = new URL(profile.siteUrl ?? 'http://localhost:3000');
+
+const themeScript = `try {
+  document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') === 'dark' ? 'dark' : 'light';
+} catch {}`;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -32,15 +34,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     title: 'Khalid Karroum | Data Scientist & Machine Learning Engineer',
-    description: 'End-to-end machine-learning systems—from evaluation and APIs to decision workflows, deployment, and monitoring.',
+    description:
+      'Projects in machine learning, data analysis, and backend development by Khalid Karroum.',
     siteName: `${profile.name} — Portfolio`,
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: `${profile.name}, Data Scientist and Machine Learning Engineer` }],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Khalid Karroum | Data Scientist & Machine Learning Engineer',
-    description: 'End-to-end machine-learning systems built beyond the notebook.',
-    images: ['/og.png'],
+    description:
+      'Projects in machine learning, data analysis, and backend development by Khalid Karroum.',
   },
   robots: { index: true, follow: true },
 };
@@ -53,7 +55,14 @@ const personSchema = {
   address: { '@type': 'PostalAddress', addressCountry: 'MA' },
   url: profile.siteUrl,
   sameAs: [profile.github],
-  knowsAbout: ['Data Science', 'Machine Learning', 'Applied AI', 'Credit Risk', 'Anomaly Detection', 'MLOps'],
+  knowsAbout: [
+    'Data Science',
+    'Machine Learning',
+    'Applied AI',
+    'Credit Risk',
+    'Anomaly Detection',
+    'MLOps',
+  ],
 };
 
 export default function RootLayout({
@@ -62,16 +71,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
-        <a className="skip-link" href="#main-content">Skip to content</a>
-        <MotionController />
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         <SiteHeader />
-        <div id="main-content">
         {children}
-        </div>
         <Footer />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </body>
     </html>
   );

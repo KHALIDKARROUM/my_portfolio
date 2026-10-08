@@ -1,56 +1,78 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, MapPin } from 'lucide-react';
 import { ContactCTA } from '@/components/portfolio/ContactCTA';
-import { ProfileVisual } from '@/components/portfolio/ProfileVisual';
-import { SectionHeading } from '@/components/portfolio/SectionHeading';
-import { SkillsGrid } from '@/components/portfolio/SkillsGrid';
 import { education } from '@/data/education';
 import { profile, technicalInterests } from '@/data/profile';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'How Khalid Karroum approaches Data Science, Machine Learning, applied AI, and end-to-end ML systems.',
+  description:
+    'Khalid Karroum’s education, interests, and approach to machine learning.',
 };
 
 export default function AboutPage() {
   return (
-    <main>
-      <section className="about-hero shell">
-        <div data-reveal="left">
-          <p className="eyebrow">About / professional approach</p>
-          <h1>Modeling the problem is only half the work.</h1>
-          <p>I’m interested in machine-learning systems where statistical judgment and engineering discipline reinforce each other. That means treating evaluation, interfaces, operational controls, and limitations as part of the same design.</p>
-          <div className="about-location"><MapPin aria-hidden="true" /> {profile.location}</div>
-        </div>
-        <ProfileVisual />
+    <main id="main-content" tabIndex={-1}>
+      <section aria-labelledby="about-title">
+        <h1 id="about-title">About</h1>
+        <p>
+          I’m {profile.name}, based in {profile.location}. I work on data
+          analysis, machine learning, and backend development.
+        </p>
+        <p>
+          I build projects that cover data preparation, model evaluation, and
+          application development. I’m particularly interested in financial risk
+          and anomaly detection.
+        </p>
       </section>
 
-      <section className="about-principles shell" aria-label="Working principles">
-        <article data-reveal="up"><span>01</span><h2>Start with the decision.</h2><p>Define who uses the output, what action it informs, and what an error costs before optimizing a score.</p></article>
-        <article data-reveal="up" data-reveal-delay="90"><span>02</span><h2>Protect the evaluation.</h2><p>Keep preprocessing, calibration, threshold selection, and holdout testing separated and reproducible.</p></article>
-        <article data-reveal="up" data-reveal-delay="180"><span>03</span><h2>Engineer the seams.</h2><p>Data contracts, APIs, persistence, access control, monitoring, and tests determine whether a model can be trusted in context.</p></article>
-      </section>
-
-      <section className="about-education shell">
-        <SectionHeading eyebrow="Foundation / 01" title="Education & technical direction." />
-        <div className="about-education-grid">
-          <div data-reveal="left">
-            {education.map((item) => <article key={item.field}><span>Current</span><h3>{item.degree}</h3><p>{item.field}</p><small>{item.location}</small></article>)}
+      <section aria-labelledby="education-title">
+        <h2 id="education-title">Education</h2>
+        {education.map((item) => (
+          <div key={item.field}>
+            <p>
+              <strong>{item.degree}</strong>
+              <br />
+              {item.field}
+              <br />
+              {item.location}
+            </p>
+            {item.institution && <p>{item.institution}</p>}
+            {item.startYear && (
+              <p>
+                {item.startYear}
+                {item.endYear ? ` – ${item.endYear}` : ' – present'}
+              </p>
+            )}
+            {item.coursework.length > 0 && (
+              <p>Coursework: {item.coursework.join(', ')}</p>
+            )}
           </div>
-          <div data-reveal="right" data-reveal-delay="90"><span className="detail-label">Current depth</span><ul>{technicalInterests.map((item) => <li key={item}>{item}</li>)}</ul></div>
-        </div>
+        ))}
       </section>
 
-      <section className="about-skills shell">
-        <SectionHeading eyebrow="Capabilities / 02" title="A focused, defensible stack." description="These capabilities are grounded in public project work, not decorative proficiency claims." />
-        <SkillsGrid />
+      <section aria-labelledby="approach-title">
+        <h2 id="approach-title">How I work</h2>
+        <ul>
+          <li>Define the problem and establish a baseline.</li>
+          <li>Keep training, model selection, and testing separate.</li>
+          <li>Use consistent preprocessing in training and inference.</li>
+          <li>Document limitations and test the application.</li>
+        </ul>
       </section>
 
-      <section className="about-project-link shell" data-reveal="up">
-        <p>See how those principles show up in the work.</p>
-        <Link href="/projects">Explore project case studies <ArrowRight aria-hidden="true" /></Link>
+      <section aria-labelledby="interests-title">
+        <h2 id="interests-title">Interests</h2>
+        <ul>
+          {technicalInterests.map((interest) => (
+            <li key={interest}>{interest}</li>
+          ))}
+        </ul>
+        <p>
+          <Link href="/projects">View my projects</Link>
+        </p>
       </section>
+
       <ContactCTA />
     </main>
   );
